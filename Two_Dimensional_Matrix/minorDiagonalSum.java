@@ -60,7 +60,7 @@ public class minorDiagonalSum {
                      {11,12,13,14,15},
                      {16,17,18,19,20},
                      {21,22,23,24,25}};
-        System.out.println(solve(A));
+        System.out.println("Sum of minor digonals is: " + solve(A));
     }
     public static  int solve(final int[][] A) {
         int sum = 0;
