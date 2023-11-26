@@ -3,6 +3,7 @@ public class DecodeWays {
         System.out.println(numDecodings("11106"));
         // answer is 2
     }
+
     public static int numDecodings(String s) {
         if (s == null || s.length() == 0 || s.charAt(0) == '0') {
             return 0;

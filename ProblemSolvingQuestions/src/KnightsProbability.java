@@ -1,15 +1,15 @@
 import java.util.Arrays;
-import java.math.BigDecimal;
 
 public class KnightsProbability {
     public static void main(String[] args) {
-        System.out.println(knightProbability(10,13,5,3));
+        System.out.println(knightProbability(10, 13, 5, 3));
         // Answer is : 0.11734
     }
-    public static double knightProbabilityRec(int i, int j, int k,int n, double[][][] dp){
-        if(i  < 0 || j < 0 || i >= n || j >= n) return 0;
-        if(k == 0) return 1;
-        if(dp[i][j][k] != -1) return dp[i][j][k];
+
+    public static double knightProbabilityRec(int i, int j, int k, int n, double[][][] dp) {
+        if (i < 0 || j < 0 || i >= n || j >= n) return 0;
+        if (k == 0) return 1;
+        if (dp[i][j][k] != -1) return dp[i][j][k];
         double one = 0.125 * knightProbabilityRec(i + 1, j - 2, k - 1, n, dp);
         double two = 0.125 * knightProbabilityRec(i - 1, j - 2, k - 1, n, dp);
         double three = 0.125 * knightProbabilityRec(i - 2, j - 1, k - 1, n, dp);
@@ -20,14 +20,14 @@ public class KnightsProbability {
         double eight = 0.125 * knightProbabilityRec(i + 2, j + 1, k - 1, n, dp);
         return dp[i][j][k] = one + two + three + four + five + six + seven + eight;
     }
+
     public static double knightProbability(int n, int k, int row, int column) {
         double[][][] dp = new double[n + 1][n + 1][k + 1];
-        for(double[][] nums : dp){
-            for(double[] arr : nums) Arrays.fill(arr, -1.0);
+        for (double[][] nums : dp) {
+            for (double[] arr : nums) Arrays.fill(arr, -1.0);
         }
         return knightProbabilityRec(row, column, k, n, dp);
     }
-
 
 
 //     static int[][] moves = new int[][]{
@@ -86,5 +86,5 @@ public class KnightsProbability {
 //     }
 // }
 
-    }
+}
 

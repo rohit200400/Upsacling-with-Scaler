@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
 * You are giVen an integer array coins representing coins of different denominations and an integer amount representing
 * a total amount of money.
@@ -14,13 +16,13 @@ public class CoinChange {
     public static void main(String[] args) {
         int coins[] = {9, 6, 5, 1};
         int V = 11;
-        System.out.println ( "Minimum coins required is "
+        System.out.println("Minimum coins required is "
                 + coinChange(coins, V));
     }
+
     public static int coinChange(int[] coins, int amount) {
         int m = coins.length;
         int table[] = new int[amount + 1];
-
         // Base case (If giVen Value V is 0)
         table[0] = 0;
 
@@ -30,21 +32,20 @@ public class CoinChange {
 
         // Compute minimum coins required for all
         // Values from 1 to V
-        for (int i = 1; i <= amount; i++)
-        {
+        for (int i = 1; i <= amount; i++) {
             // Go through all coins smaller than i
             for (int j = 0; j < m; j++)
-                if (coins[j] <= i)
-                {
+                if (coins[j] <= i) {
                     int sub_res = table[i - coins[j]];
                     if (sub_res != Integer.MAX_VALUE
-                            && sub_res + 1 < table[i])
-                    {table[i] = sub_res + 1;}
+                            && sub_res + 1 < table[i]) {
+                        table[i] = sub_res + 1;
+                    }
                 }
 
         }
 
-        if(table[amount]==Integer.MAX_VALUE)
+        if (table[amount] == Integer.MAX_VALUE)
             return -1;
 
         return table[amount];

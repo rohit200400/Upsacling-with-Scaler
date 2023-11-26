@@ -18,29 +18,31 @@ Explanation: Given three buildings at (0,0), (0,4), (2,2), and an obstacle at (0
 The point (1,2) is an ideal empty land to build a house, as the total travel distance of 3+3+1=7 is minimal.
 So return 7.*/
 public class SortestDistanceFromBuildings {
-    static int[][] directions = new int[][]{{-1,0},{1,0},{0,-1},{0,1}};
+    static int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
     public static void main(String[] args) {
-        int[][] inp = new int[][] { {1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0} };
+        int[][] inp = new int[][]{{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
         System.out.println(shortestDistance(inp));
 
     }
+
     public static int shortestDistance(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
         int[][] dist = new int[m][n];
         int visited = -1;
-        for(int i = 0; i < m; i++){
-            for (int j = 0; j < n; j++){
-                if(grid[i][j] == 1){
-                    calculateDistance(i,j,dist,grid,visited,0);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    calculateDistance(i, j, dist, grid, visited, 0);
                     visited--;
                 }
             }
         }
         int minDist = Integer.MAX_VALUE;
-        for(int i = 0; i < m; i++){
-            for (int j = 0; j < n; j++){
-                if(dist[i][j] > 0){
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dist[i][j] > 0) {
                     minDist = Math.min(minDist, dist[i][j]);
                 }
             }
@@ -49,19 +51,19 @@ public class SortestDistanceFromBuildings {
     }
 
     private static void calculateDistance(int i, int j, int[][] dist, int[][] grid, int visited, int distance) {
-        if(grid[i][j] == visited && dist[i][j] > 0) {
+        if (grid[i][j] == visited && dist[i][j] > 0) {
             dist[i][j] = Math.min(dist[i][j], distance);
             return;
         }
-       if(grid[i][j] != 1){
-           grid[i][j] = visited;
-           dist[i][j] += distance;
-       }
-        for(int[] dir: directions){
-            int x = i+dir[0];
-            int y = j+dir[1];
-            if(x>=0 && y>=0 && x<grid.length && y< grid[0].length && grid[x][y] <= 0){
-                calculateDistance(x,y,dist,grid,visited,distance+1);
+        if (grid[i][j] != 1) {
+            grid[i][j] = visited;
+            dist[i][j] += distance;
+        }
+        for (int[] dir : directions) {
+            int x = i + dir[0];
+            int y = j + dir[1];
+            if (x >= 0 && y >= 0 && x < grid.length && y < grid[0].length && grid[x][y] <= 0) {
+                calculateDistance(x, y, dist, grid, visited, distance + 1);
             }
         }
 

@@ -30,30 +30,30 @@ import java.util.PriorityQueue;
      For each student, there are at least 5 scores*/
 public class HighFive {
     public static void main(String[] args) {
-        int[][] input = {{1,91},{1,92},{2,93},{2,97},{1,60},{2,77},{1,65},{1,87},{1,100},{2,100},{2,76}};
+        int[][] input = {{1, 91}, {1, 92}, {2, 93}, {2, 97}, {1, 60}, {2, 77}, {1, 65}, {1, 87}, {1, 100}, {2, 100}, {2, 76}};
         System.out.println(highFive(input));
     }
-    public static int[][] highFive(int[][] marklist){
+
+    public static int[][] highFive(int[][] marklist) {
         Map<Integer, PriorityQueue<Integer>> structuredMarklist = new HashMap<>();
-        for(int[] record: marklist){
+        for (int[] record : marklist) {
             int student = record[0];
-            if(structuredMarklist.containsKey(student)){
+            if (structuredMarklist.containsKey(student)) {
                 structuredMarklist.get(student).add(record[1]);
-            }
-            else{
+            } else {
                 PriorityQueue<Integer> que = new PriorityQueue<>(Collections.reverseOrder());
                 que.add(record[1]);
-                structuredMarklist.put(student,que);
+                structuredMarklist.put(student, que);
             }
         }
         int[][] output = new int[structuredMarklist.size()][2];
         int idx = 0;
-        for(int student: structuredMarklist.keySet()){
+        for (int student : structuredMarklist.keySet()) {
             int avg = 0;
-            for(int i = 0; i < 5; i++){
-                avg+= structuredMarklist.get(student).poll();
+            for (int i = 0; i < 5; i++) {
+                avg += structuredMarklist.get(student).poll();
             }
-            avg = avg/5;
+            avg = avg / 5;
             output[idx] = new int[]{student, avg};
             idx++;
         }

@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CollectionsFrameworkPractice {
@@ -9,7 +10,7 @@ public class CollectionsFrameworkPractice {
         System.out.println(arr.stream().distinct().count());
         System.out.println();
         arr.parallelStream().filter(num -> num % 2 == 0).forEach(System.out::println);
-        
+
         arr.stream().filter(num -> num % 2 == 0).forEach(System.out::println);
         List<Integer> arr2 = arr.parallelStream().filter(num -> num % 2 == 0).collect(Collectors.toList());
         arr2.stream().forEach(System.out::println);

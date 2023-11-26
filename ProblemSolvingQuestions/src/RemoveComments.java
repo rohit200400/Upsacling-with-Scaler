@@ -21,7 +21,7 @@ public class RemoveComments {
                     continue; // whole line is commented
                 } else {
                     String currLine = line.substring(0, line.indexOf("//"));
-                    if(currLine.trim().length() != 0){
+                    if (currLine.trim().length() != 0) {
                         output.add(currLine);
                     }
                 }
