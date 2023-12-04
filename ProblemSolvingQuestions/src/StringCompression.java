@@ -2,10 +2,6 @@ public class StringCompression {
     public static void main(String[] args) {
         char[] input = {'a', 'a', 'b', 'b', 'c', 'c', 'c', 'c'};
         System.out.println(compress(input)); // 6
-//        for (char c: input
-//             ) {
-//            System.out.println(c);
-//        }
     }
 
     public static int compress(char[] chars) {
